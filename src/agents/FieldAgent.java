@@ -1,12 +1,11 @@
 package agents;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
 
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import components.FieldPanel;
 
 import madkit.gui.OutputPanel;
 import madkit.kernel.Agent;
@@ -17,12 +16,7 @@ public class FieldAgent extends Agent {
 	@Override
 	public void setupFrame(JFrame frame) {
 
-		JPanel fieldPanel = new JPanel();
-		fieldPanel.setPreferredSize(new Dimension(160, 360));
-		fieldPanel.setBackground(Color.GREEN);
-		fieldPanel.add(new JLabel("CAMPO!"));
-		
-		
+		JPanel fieldPanel = new FieldPanel();
 		JPanel outputPanel = new OutputPanel(this);
 		
 		JPanel contentPane = new JPanel(new BorderLayout());
@@ -53,7 +47,7 @@ public class FieldAgent extends Agent {
 
 	@Override
 	protected void end() {
-		//kill every player
+		//TODO kill every player
 		log("It`s over.");
 		pause(2000);
 	}
