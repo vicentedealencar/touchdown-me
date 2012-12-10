@@ -20,7 +20,7 @@ Offense.prototype.step = function () {
     this.location.add(this.velocity);
 
     if (this.location.y + this.height / 2 > world.height) {
-        this.velocity.mult(-0.75);
+        this.velocity.mult(-1);
         this.location.y = world.height - this.height / 2;
     }
 };
