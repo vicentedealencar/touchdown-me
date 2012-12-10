@@ -21,7 +21,7 @@ Defense.prototype.step = function () {
     if (Math.abs(this.target.location.x - this.location.x) < 20 &&
         Math.abs(this.target.location.y - this.location.y) < 20)
     {
-        console.log("Got you!");
+        alert("Got you!");
         play.isOver = true;
     }
         
