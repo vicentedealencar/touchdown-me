@@ -5,9 +5,16 @@
     <title>Flora</title>
     <link rel="stylesheet" href="css/flora.css" type="text/css" charset="utf-8">
     <style type='text/css'>
-      .ball {
-        background: rgb(197, 150, 200);
-        border-color: rgb(255, 255, 255);
+      .offense {
+        background: #72264a;
+        border-color: #f357a1;
+        border-width: 0.25em;
+        border-style: solid;
+        border-radius: 100%;
+      }
+      .defense {
+        background: #00ff21;
+        border-color: #197123;
         border-width: 0.25em;
         border-style: solid;
         border-radius: 100%;
@@ -18,25 +25,24 @@
   <body>
     <script type="text/javascript" charset="utf-8">
 
-      function Ball(world, opt_options) {
+      function Offense(opt_options) {
 
         var options = opt_options || {},
             world = Flora.universe.first();
 
         // You must call Flora.Element
         Flora.Element.call(this, options);
-
         this.acceleration = new Flora.Vector(0, 0.1);
         this.velocity = new Flora.Vector();
         this.location = new Flora.Vector(world.width/2, 0);
       }
       // You must extend Flora.Element
-      exports.Utils.extend(Ball, Flora.Element);
+      exports.Utils.extend(Offense, Flora.Element);
 
-      Ball.prototype.name = 'Ball';
+      Offense.prototype.name = 'Offense';
 
       // You must include a step function
-      Ball.prototype.step = function() {
+      Offense.prototype.step = function() {
 
         var world = Flora.universe.first();
 
@@ -51,7 +57,7 @@
       };
 
       Flora.System.start(function() {
-        new Ball();
+        new Offense();
       });
     </script>
   </body>
