@@ -7,6 +7,7 @@ function Offense(opt_options) {
     this.acceleration = new Flora.Vector(0, 0.1);
     this.velocity = new Flora.Vector();
     this.location = new Flora.Vector(world.width / 2, 0);
+    this.hasBall = !!options.hasBall;
 }
 
 exports.Utils.extend(Offense, Flora.Element);

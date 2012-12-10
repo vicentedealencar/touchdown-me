@@ -1,4 +1,5 @@
 Flora.System.start(function () {
-    new Offense();
-    new Defense();
+
+    var off = new Offense({hasBall: true});
+    var def = new Defense();
 });
