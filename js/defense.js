@@ -6,7 +6,7 @@ function Defense(opt_options) {
     Flora.Element.call(this, options);
     this.accel = 0.005;
     this.vel = 0;
-    this.location = new Flora.Vector(world.width / 2, 0);
+    this.location = new Flora.Vector(world.width / 3, world.height / 3);
 }
 
 exports.Utils.extend(Defense, Flora.Element);
@@ -17,7 +17,14 @@ Defense.prototype.seek = function (ballCarrier) {
 }
 
 Defense.prototype.step = function () {
-    if (!this.target) return;
+    if (!this.target || play.isOver) return;
+    if (Math.abs(this.target.location.x - this.location.x) < 20 &&
+        Math.abs(this.target.location.y - this.location.y) < 20)
+    {
+        console.log("Got you!");
+        play.isOver = true;
+    }
+        
 
     var angle = Math.atan2(
         this.target.location.x - this.location.x,
