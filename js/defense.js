@@ -5,7 +5,6 @@ function Defense(opt_options) {
     Flora.Element.call(this, options);
     this.accel = 0.005;
     this.vel = 0;
-    //this.location = new Flora.Vector(world.width / 3, world.height / 3);
 }
 
 exports.Utils.extend(Defense, Flora.Element);
