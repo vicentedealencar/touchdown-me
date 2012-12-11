@@ -12,14 +12,17 @@ function Defense(opt_options) {
 exports.Utils.extend(Defense, Flora.Element);
 Defense.prototype.name = 'Defense';
 
-Defense.prototype.seek = function (ballCarrier) {
-    this.target = ballCarrier;
-}
-
 Defense.prototype.step = function () {
-    if (!this.target || play.isOver) return;
-    if (Math.abs(this.target.location.x - this.location.x) < 20 &&
-        Math.abs(this.target.location.y - this.location.y) < 20)
+    var target = null;
+    play.offensivePlayers.some(function (each) {
+        if (each.hasBall)
+            target = each;
+        return each.hasBall;
+    });
+
+    if (!target || play.isOver) return;
+    if (Math.abs(target.location.x - this.location.x) < 20 &&
+        Math.abs(target.location.y - this.location.y) < 20)
     {
         alert("Got you!");
         play.isOver = true;
@@ -27,8 +30,8 @@ Defense.prototype.step = function () {
         
 
     var angle = Math.atan2(
-        this.target.location.x - this.location.x,
-        this.target.location.y - this.location.y);
+        target.location.x - this.location.x,
+        target.location.y - this.location.y);
 
     this.vel += this.accel;
     this.location.x += this.vel * Math.sin(angle);
