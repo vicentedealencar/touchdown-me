@@ -13,16 +13,19 @@ exports.Utils.extend(Defense, Flora.Element);
 Defense.prototype.name = 'Defense';
 
 Defense.prototype.step = function () {
-    var target = null;
-    play.offensivePlayers.some(function (each) {
-        if (each.hasBall)
-            target = each;
-        return each.hasBall;
-    });
 
-    if (!target || play.isOver) return;
-    if (Math.abs(target.location.x - this.location.x) < 20 &&
-        Math.abs(target.location.y - this.location.y) < 20)
+    if (!this.target || !this.target.hasBall) {
+        var self = this;
+        play.offensivePlayers.some(function (each) {
+            if (each.hasBall)
+                self.target = each;
+            return each.hasBall;
+        });
+    }
+
+    if (!this.target || play.isOver) return;
+    if (Math.abs(this.target.location.x - this.location.x) < 20 &&
+        Math.abs(this.target.location.y - this.location.y) < 20)
     {
         alert("Got you!");
         play.isOver = true;
@@ -30,8 +33,8 @@ Defense.prototype.step = function () {
         
 
     var angle = Math.atan2(
-        target.location.x - this.location.x,
-        target.location.y - this.location.y);
+        this.target.location.x - this.location.x,
+        this.target.location.y - this.location.y);
 
     this.vel += this.accel;
     this.location.x += this.vel * Math.sin(angle);
